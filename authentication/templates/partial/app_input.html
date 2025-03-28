@@ -1,0 +1,14 @@
+<div class="relative">
+    <input
+      type="{{ type }}"
+      name="{{ name }}"
+      id="{{ id }}"
+      value="{{ value|default_if_none:'' }}"
+      class="w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 text-black"
+      placeholder="{{ placeholder }}"
+    />
+    {% if errors %}
+      <p class="text-red-500 text-sm mt-1">{{ errors.0 }}</p>
+    {% endif %}
+  </div>
+  

@@ -1,67 +1,38 @@
-{% extends 'layout.html' %}
-
-{% block title %} Registration Page {% endblock %}
+{% extends 'layout.html' %} {% block title %} Registration Page {% endblock %}
 {% block content %}
 <div class="flex justify-center items-center h-screen bg-gray-100">
   <div class="bg-white p-8 rounded-lg shadow-lg w-96">
-      <h2 class="text-2xl font-bold text-center mb-6 text-black">Register</h2>
+    <h2 class="text-2xl font-bold text-center mb-6 text-black">Register</h2>
 
-      <form method="post" class="space-y-4">
-          {% csrf_token %}
+    <form method="post" class="space-y-4">
+      {% csrf_token %} {{ form.first_name }} {% if form.first_name.errors %}
+      <p class="text-red-500 text-sm mt-1">{{ form.first_name.errors.0 }}</p>
+      {% endif %} {{ form.last_name }} {% if form.last_name.errors %}
+      <p class="text-red-500 text-sm mt-1">{{ form.last_name.errors.0 }}</p>
+      {% endif %}
+      {% csrf_token %} {{ form.username }} {% if form.username.errors %}
+      <p class="text-red-500 text-sm mt-1">{{ form.username.errors.0 }}</p>
+      {% endif %} {{ form.email }} {% if form.email.errors %}
+      <p class="text-red-500 text-sm mt-1">{{ form.email.errors.0 }}</p>
+      {% endif %}
 
-          <!-- Username Field -->
-          <div>
-              <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-gray-700">
-                  {{ form.username.label }}
-              </label>
-              {{ form.username }}
-              {% if form.username.errors %}
-                  <p class="text-red-500 text-sm mt-1">{{ form.username.errors.0 }}</p>
-              {% endif %}
-          </div>
 
-          <!-- Email Field -->
-          <div>
-              <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700">
-                  {{ form.email.label }}
-              </label>
-              {{ form.email }}
-              {% if form.email.errors %}
-                  <p class="text-red-500 text-sm mt-1">{{ form.email.errors.0 }}</p>
-              {% endif %}
-          </div>
+      {% include "partial/password_input.html" with name="password1" id=form.password1.id_for_label value=form.password1.value placeholder="Enter password" errors=form.password1.errors toggle_id="toggle-password" %}
+      {% include "partial/password_input.html" with name="password2" id=form.password2.id_for_label value=form.password2.value placeholder="Confirm password" errors=form.password2.errors toggle_id="toggle-password-2" %}
+      
 
-          <!-- Password Field -->
-          <div>
-              <label for="{{ form.password1.id_for_label }}" class="block text-sm font-medium text-gray-700">
-                  {{ form.password1.label }}
-              </label>
-              {{ form.password1 }}
-              {% if form.password1.errors %}
-                  <p class="text-red-500 text-sm mt-1">{{ form.password1.errors.0 }}</p>
-              {% endif %}
-          </div>
+      <button
+        type="submit"
+        class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+      >
+        Register
+      </button>
+    </form>
 
-          <!-- Confirm Password Field -->
-          <div>
-              <label for="{{ form.password2.id_for_label }}" class="block text-sm font-medium text-gray-700">
-                  {{ form.password2.label }}
-              </label>
-              {{ form.password2 }}
-              {% if form.password2.errors %}
-                  <p class="text-red-500 text-sm mt-1">{{ form.password2.errors.0 }}</p>
-              {% endif %}
-          </div>
-
-          <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
-              Register
-          </button>
-      </form>
-
-      <p class="text-center text-sm text-gray-600 mt-4">
-          Already have an account? <a href="{% url 'login' %}" class="text-blue-500">Login</a>
-      </p>
+    <p class="text-center text-sm text-gray-600 mt-4">
+      Already have an account?
+      <a href="{% url 'login' %}" class="text-blue-500">Login</a>
+    </p>
   </div>
 </div>
-
 {% endblock %}

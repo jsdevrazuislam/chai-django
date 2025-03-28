@@ -4,22 +4,36 @@ from django.contrib.auth.forms import UserCreationForm
 
 class UserRegistrationForm(UserCreationForm):
 
-    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={
-        'class': 'w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 text-black'
+    input_style = 'w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 text-black'
+
+    first_name = forms.CharField(required=True, widget=forms.TextInput(attrs={
+        'class': input_style,
+        'placeholder': 'Enter your first_name'
+    }))
+
+    last_name = forms.CharField(required=True, widget=forms.TextInput(attrs={
+        'class': input_style,
+        'placeholder': 'Enter your last_name'
+    }))
+
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class': input_style,
+        'placeholder': 'Enter username'
     }))
     
-    username = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 text-black'
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={
+        'class': input_style,
+        'placeholder': 'Enter your email'
     }))
     
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={
-        'class': 'w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 text-black'
+        'class': input_style,
     }))
     
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={
-        'class': 'w-full p-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 text-black'
+        'class': input_style,
     }))
 
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = ["first_name", "last_name", "username", "email", "password1", "password2"]
