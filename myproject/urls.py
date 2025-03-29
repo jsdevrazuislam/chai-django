@@ -22,8 +22,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('product/', include('product.urls')),
     path('auth/', include('authentication.urls')),
+    path('jobs/', include('jobs.urls')),
     path('', views.home, name='home'),
     path("__reload__/", include("django_browser_reload.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

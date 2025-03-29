@@ -3,25 +3,9 @@
 {% block title %} Home Page {% endblock %}
 {% block content %}
 
-
+<h1>Hello Landing Page</h1>
 
   <script>
-    document.getElementById("logoutBtn").addEventListener("click", function () {
-        fetch("{% url 'logout' %}", {
-            method: "POST",
-            headers: {
-                "X-CSRFToken": "{{ csrf_token }}",
-            },
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.message) {
-                window.location.href = "{% url 'login' %}"; 
-            } else {
-                alert("Logout failed!");
-            }
-        })
-        .catch(error => console.error("Error:", error));
-    });
+    
   </script>
 {% endblock %}
