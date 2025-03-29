@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
 
 class JobModel(models.Model):
     JOB_TYPES = [
@@ -32,6 +33,7 @@ class JobModel(models.Model):
     employees_range = models.CharField(max_length=20, choices=EMPLOYEE_RANGE, default='small')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

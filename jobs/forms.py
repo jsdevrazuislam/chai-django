@@ -7,6 +7,7 @@ class JobForm(forms.ModelForm):
     class Meta:
         model = JobModel
         fields = "__all__"
+        exclude = ['created_by'] 
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'w-full p-2 border border-gray-300 rounded-lg',
