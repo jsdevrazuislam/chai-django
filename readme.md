@@ -9,7 +9,6 @@ This is a simple Django project created for learning and practicing Django conce
 - CRUD operations
 - Static files & templates
 - Database integration (SQLite/PostgreSQL)
-- API endpoints using Django REST Framework (Optional)
 
 ## 🛠️ Installation & Setup
 ### 1️⃣ Clone the Repository
